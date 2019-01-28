@@ -1,0 +1,14 @@
+def search(outfile,datab,outtype,idnum):
+    from Bio import Entrez
+    from Bio import SeqIO
+    # put your real email address here
+    Entrez.email = "your.email@helsinki.fi"
+    handle = Entrez.efetch(db=datab, rettype=outtype, retmode="text", id=idnum)
+    record = handle.read()
+    print(record)
+    with open(outfile, "w") as f:
+        f.write(str(record))
+
+
+
+

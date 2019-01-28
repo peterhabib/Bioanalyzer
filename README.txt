@@ -1,0 +1,1 @@
+Bioanalyzer was written using Python programming language (version 3.4+) that provides set of new functions, new tools and already available tools with minor edition in order to improve its functionality and presenting the output in more ordered way to implement a data analysis, extraction and visualization all gathered in one software.

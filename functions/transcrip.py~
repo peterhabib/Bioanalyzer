@@ -1,0 +1,23 @@
+#Nuc
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.Alphabet import IUPAC
+
+def transcrib(fn , filename):
+    try:
+        for record in SeqIO.parse(str(fn), "fasta"):
+            coding_dna = Seq("%s" % record.seq)
+            templatedna = coding_dna.reverse_complement()
+
+            trc = ">%s\n\n" % templatedna.reverse_complement().transcribe()
+    except FileNotFoundError:
+        return
+
+    with open(filename, "w") as f:
+        for record in SeqIO.parse(str(fn), "fasta"):
+            coding_dna = Seq("%s" % record.seq)
+            templatedna = coding_dna
+            transc = templatedna.reverse_complement().transcribe()
+            f.write(str(">%s\n%s\n\n" % (record.id, transc)))
+
+

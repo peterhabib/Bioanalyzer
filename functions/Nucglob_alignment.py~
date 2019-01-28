@@ -1,0 +1,31 @@
+from Bio.pairwise2 import format_alignment
+from Bio import SeqIO
+from Bio import pairwise2
+
+def gloms(infile1,infile2,outfile,gapopen,gapexten):
+    for record in SeqIO.parse(infile1, "fasta"):
+        seq1 = record.seq
+    for record in SeqIO.parse(infile2, "fasta"):
+        seq2 = record.seq
+    # alignments1 = pairwise2.align.globalmx("ACCGT", "ACG", 100, -1)
+    # alignments2 = pairwise2.align.globalmx("ACG", "ACCGT", 100, -1)
+    file = open("lines.txt", "w")
+    for a in pairwise2.align.globalmx(seq1, seq2, gapopen, gapexten):
+        print(format_alignment(*a))
+        alignments2 = format_alignment(*a)
+        # print(alignments2)
+    file.write(alignments2)
+
+
+
+    file = open(outfile, "w")
+    reads = open("lines.txt")
+    for i, line in enumerate(reads):
+        result = "%s\n" % line[0:100]
+        print(result)
+        file.write(result)
+    reads.close()
+    file.close()
+
+
+

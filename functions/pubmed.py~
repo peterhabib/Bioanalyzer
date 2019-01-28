@@ -1,0 +1,35 @@
+def pubm():
+ 
+
+    handle = Entrez.esearch(db="%s" %datab.get(), term="%s"%entry1.get(), retmax=1000000000)
+    Entrez.email = "A.N.Other@example.com"  # Always tell NCBI who you are
+    record = Entrez.read(handle)
+    idlist = record["IdList"]
+    handle = Entrez.efetch(db="%s" %datab.get(), id=idlist, rettype="medline", retmode="text")
+    records = Medline.parse(handle)
+    records = list(records)
+
+    label.configure(text="Process Completed")
+
+    lim = 0
+    root = tkinter.Tk()
+    s = tkinter.Scrollbar(root)
+    T = tkinter.Text(root)
+    T.focus_set()
+    s.pack(side=tkinter.RIGHT, fill=tkinter.Y)
+    T.pack(side=tkinter.LEFT, fill=tkinter.Y)
+    s.config(command=T.yview)
+    T.config(yscrollcommand=s.set)
+
+    while lim < 100:
+        for record in records:
+            print("title:", record.get("TI", "?"))
+            print("authors:", record.get("AU", "?"))
+            print("source:", record.get("SO", "?"))
+            print("")
+            tit = "title:%s" % record.get("TI", "?")
+            d = "ID:", record.get("PMID", "?")
+            T.insert(tkinter.END, "%s\n%s\n\n" % (tit, d))
+        tkinter.mainloop()
+
+

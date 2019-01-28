@@ -1,0 +1,37 @@
+from Bio.pairwise2 import format_alignment
+from Bio import SeqIO
+from Bio import pairwise2
+def local(infile1 , infile2 , outfile , gabopen , gabext):
+
+    fn1 = infile1
+    for record in SeqIO.parse(fn1, "fasta"):
+        seq1 = record.seq
+        print(seq1)
+
+    fn2 = infile2
+    for record in SeqIO.parse(fn2, "fasta"):
+        seq2 = record.seq
+        print(seq2)
+    # alignments1 = pairwise2.align.globalmx("ACCGT", "ACG", 100, -1)
+    # alignments2 = pairwise2.align.globalmx("ACG", "ACCGT", 100, -1)
+    file = open("lines.txt", "w")
+    for a in pairwise2.align.localmx(seq2, seq1 , int(gabopen), int(gabext)):
+        print(format_alignment(*a))
+        alignments2 = format_alignment(*a)
+        print(alignments2)
+        file.write(alignments2)
+
+    filename = outfile
+    file = open(filename, "w")
+    reads = open("lines.txt" , "r")
+    for i, line in enumerate(reads):
+        result = "%s\n" % line[0:100]
+        print(result)
+        file.write(result)
+    reads.close()
+    file.close()
+
+
+local("/home/peter/Desktop/Moduls/test_data/A.fasta" , "/home/peter/Desktop/Moduls/test_data/B.fasta" , "/home/peter/Desktop/Moduls/test_data/result.txt" , "-11" , "-1")
+
+

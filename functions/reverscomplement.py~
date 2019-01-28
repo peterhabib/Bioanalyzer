@@ -1,0 +1,25 @@
+from Bio.Seq import Seq
+from Bio import SeqIO
+def revcom(infile,outfile):
+    try:
+        for record in SeqIO.parse(str(infile), "fasta"):
+            print(">%s" % record.id)
+            coding_dna = Seq("%s" % record.seq)
+            templatedna = coding_dna.reverse_complement()
+
+            trc = ">%s\n\n" % templatedna.reverse_complement().transcribe()
+            print(trc)
+    except FileNotFoundError:
+        return
+
+    with open(outfile, "w") as f:
+        for record in SeqIO.parse(str(infile), "fasta"):
+            print(">%s" % record.id)
+            coding_dna = Seq("%s" % record.seq)
+            templatedna = coding_dna
+
+            transc = templatedna.reverse_complement()
+            f.write(str(">%s\n%s\n\n" % (record.id, transc)))
+   
+
+revcom("/home/peter/Desktop/Moduls/test_data/multiple fasta record (copy).fasta","/home/peter/Desktop/Moduls/result.txt")

@@ -1,0 +1,173 @@
+from tkinter import filedialog
+from tkinter import *
+import tkinter as tk
+import os
+
+def choosein(title,text):
+    def write_slogan():
+        root11.filenamein = filedialog.askopenfilename(initialdir="/", title="Select file",filetypes=(("FASTA files", "*.fasta"), ("all files", "*.*")))
+
+        root11.destroy()
+
+    def Exit():
+        root11.destroy()
+
+    root11 = tk.Tk()
+    root11.title(title)
+    frame = tk.Frame(root11)
+    frame.pack()
+    label = tk.Label(root11, text=text, font=('Arial', 15, 'bold'))
+    label.pack()
+    button = tk.Button(frame,
+                       text="Cancel", bd=10, bg="black", font=('Arial', 15, 'bold'),
+                       fg="red",
+                       command=Exit)
+    button.pack(side=tk.LEFT)
+    slogan = tk.Button(frame,
+                       text="Choose", bd=10, bg="black", font=('Arial', 15, 'bold'), fg="white",
+                       command=write_slogan)
+    slogan.pack(side=tk.LEFT)
+
+    root11.mainloop()
+
+    return root11.filenamein
+
+
+
+def choosein1(title,text):
+    def write_slogan():
+
+        root.filenamein = filedialog.askopenfilename(initialdir="/", title="Select file",
+                                                     filetypes=(("FASTA files", "*.fasta"), ("all files", "*.*")))
+
+        root.destroy()
+    def Exit():
+        root.destroy()
+
+    root = tk.Tk()
+    root.title(title)
+    frame = tk.Frame(root)
+    frame.pack()
+    label = tk.Label(root, text=text,font=('Arial', 15, 'bold'))
+    label.pack()
+    button = tk.Button(frame,
+                       text="Cancel",bd = 10,bg ="black", font=('Arial', 15, 'bold'),
+                       fg="red",
+                       command=Exit)
+    button.pack(side=tk.LEFT)
+    slogan = tk.Button(frame,
+                       text="Choose",bd = 10,bg ="black", font=('Arial', 15, 'bold'),fg="white",
+                       command=write_slogan)
+    slogan.pack(side=tk.LEFT)
+
+    mainloop()
+
+    return root.filenamein
+
+
+def choosein2(title,text):
+    def write_slogan():
+        root.filenamein = filedialog.askopenfilename(initialdir="/", title="Select file",
+                                                     filetypes=(("FASTA files", "*.fasta"), ("all files", "*.*")))
+
+        root.destroy()
+
+    def Exit():
+        root.destroy()
+
+    root = tk.Tk()
+    root.title(title)
+    frame = tk.Frame(root)
+    frame.pack()
+    label = tk.Label(root, text=text,font=('Arial', 15, 'bold'))
+    label.pack()
+    button = tk.Button(frame,
+                       text="Cancel",bd = 10,bg ="black", font=('Arial', 15, 'bold'),
+                       fg="red",
+                       command=Exit)
+    button.pack(side=tk.LEFT)
+    slogan = tk.Button(frame,
+                       text="Choose",bd = 10,bg ="black", font=('Arial', 15, 'bold'),fg="white",
+                       command=write_slogan)
+    slogan.pack(side=tk.LEFT)
+
+    mainloop()
+
+    return root.filenamein
+
+
+def choosein3(title,text):
+    def write_slogan():
+
+        root.filenamein = filedialog.askopenfilename(initialdir="/", title="Select file",
+                                                     filetypes=(("FASTA files", "*.fasta"), ("all files", "*.*")))
+
+        root.destroy()
+
+    def Exit():
+        root.destroy()
+
+    root = tk.Tk()
+    root.title(title)
+    frame = tk.Frame(root)
+    frame.pack()
+    label = tk.Label(root, text=text,font=('Arial', 15, 'bold'))
+    label.pack()
+    button = tk.Button(frame,
+                       text="Cancel",bd = 10,bg ="black", font=('Arial', 15, 'bold'),
+                       fg="red",
+                       command=Exit)
+    button.pack(side=tk.LEFT)
+    slogan = tk.Button(frame,
+                       text="Choose",bd = 10,bg ="black", font=('Arial', 15, 'bold'),fg="white",
+                       command=write_slogan)
+    slogan.pack(side=tk.LEFT)
+
+    mainloop()
+
+    return root.filenamein
+
+
+
+
+def chooseout(title,text):
+    root = tk.Tk()
+    root.title(title)
+    frame = tk.Frame(root)
+    frame.pack()
+    def write_slogan():
+        filename = filedialog.asksaveasfilename(initialdir="/", title="Select file",
+                                                     filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))
+        root.destroy()
+    def Exit():
+        root.destroy()
+
+
+    label = tk.Label(root, text=text,font=('Arial', 15, 'bold'))
+    label.pack()
+    button = tk.Button(frame,
+                       text="Cancel",bd = 10,bg ="black", font=('Arial', 15, 'bold'),
+                       fg="red",
+                       command=Exit)
+    button.pack(side=tk.LEFT)
+    slogan = tk.Button(frame,
+                       text="Choose",bd = 10,bg ="black", font=('Arial', 15, 'bold'),fg="white",
+                       command=write_slogan)
+    slogan.pack(side=tk.LEFT)
+
+    return filename
+
+    root.mainloop()
+
+    
+
+
+
+
+
+
+
+
+
+
+

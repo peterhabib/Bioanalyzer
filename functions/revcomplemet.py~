@@ -1,0 +1,38 @@
+from Bio import Entrez
+from Bio import SeqIO
+from Bio.Seq import Seq
+import os
+def revcompids(infile , outfile):
+    try:
+        ides = open(infile)
+
+
+    except FileNotFoundError:
+        print("Error")
+
+    fasta = open("result.fasta", "w")
+    result = open(outfile, "w")
+    if 1 == 1:
+        for line in ides:
+            ln = line
+            Entrez.email = "your.email@helsinki.fi"
+            handle = Entrez.efetch(db="nucleotide", rettype="fasta", retmode="text", id=ln)
+            record = handle.read()
+            fasta.write(str(record))
+            for record in SeqIO.parse("result.fasta", "fasta"):
+                # print(record.id)
+                # print(record.seq)
+                accs = record.id
+                coding_dna = Seq("%s" % record.seq)
+                templatedna = coding_dna.reverse_complement()
+                trc = ">%s" % templatedna
+                result.write(str(">%s\n%s\n\n" % (accs, trc)))
+
+        if os.path.exists("result.fasta"):
+            os.remove("result.fasta")
+        else:
+            print("")
+
+    result.close()
+
+revcompids("/home/peter/Desktop/Moduls/test_data/ids.txt","/home/peter/Desktop/Moduls/result.txt")

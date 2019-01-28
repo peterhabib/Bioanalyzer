@@ -1,0 +1,27 @@
+from Bio import SeqIO
+from Bio.SeqUtils import GC
+
+def gccontent(inputfile,outfile):
+
+
+    try:
+        for record in SeqIO.parse(str(inputfile), "fasta"):
+            seq = record.seq
+            gc = GC(seq)
+            id = record.id
+            print("Record ID:%s\nSequence:%s\nGC Content:%s\n" % (id, seq, gc))
+    except FileNotFoundError:
+        return
+
+    with open(outfile, "w") as f:
+        for record in SeqIO.parse(str(inputfile), "fasta"):
+            seq = record.seq
+            gc = GC(seq)
+            id = record.id
+            res = ">%s\n%s\nGC:%s\n\n" % (id, seq, gc)
+            f.write(res)
+ 
+
+
+
+

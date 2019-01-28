@@ -1,0 +1,38 @@
+from Bio import Entrez
+from Bio import SeqIO
+import os
+from Bio.Seq import Seq
+from Bio.SeqUtils import GC
+def gccontentids(infile , outfile):
+    try:
+        ides = open(infile)
+
+    except FileNotFoundError:
+        print("Error")
+
+    fasta = open("result.fasta", "w")
+    result = open(outfile, "w")
+    if 1 == 1:
+        for line in ides:
+            ln = line
+
+            Entrez.email = "your.email@helsinki.fi"
+            handle = Entrez.efetch(db="nucleotide", rettype="fasta", retmode="text", id=ln)
+            record = handle.read()
+            fasta.write(str(record))
+            for record in SeqIO.parse("result.fasta", "fasta"):
+                # print(record.id)
+                # print(record.seq)
+                accs = record.id
+                coding_dna = Seq("%s" % record.seq)
+                gc = GC(coding_dna)
+                result.write(str(">%s\n%s\nGC: %s\n\n" % (accs, coding_dna, gc)))
+
+        if os.path.exists("result.fasta"):
+            os.remove("result.fasta")
+        else:
+            print("")
+
+    result.close()
+
+gccontentids("/home/peter/Desktop/Moduls/test_data/ids.txt" , "/home/peter/Desktop/Moduls/test_data/result.txt")

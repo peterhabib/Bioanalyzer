@@ -1,0 +1,35 @@
+from Bio.Emboss.Applications import NeedleCommandline , WaterCommandline
+from Bio import AlignIO
+from tkinter import *
+
+
+def nmw(infile1 , infile2 , outfile , gapopen , gapextend):
+    filename1 = infile1
+    filename2 = infile2
+    needle_cline = WaterCommandline()
+    needle_cline.asequence = filename1
+    needle_cline.bsequence = filename2
+    needle_cline.gapopen = int(gapopen)
+    needle_cline.gapextend = int(gapextend)
+    needle_cline.outfile = "needle.txt"
+    print(needle_cline)
+    print(needle_cline.outfile)
+    stdout, stderr = needle_cline()
+    print(stdout + stderr)
+    align = AlignIO.read("needle.txt", "emboss")
+    file = open("needle.txt", "r")
+    # print(file.read())
+    view = ("\n\n%s" % file.read())
+    root = Tk()
+    S = Scrollbar(root)
+    T = Text(root, height=4, width=500)
+    S.pack(side=RIGHT, fill=Y)
+    T.pack(side=LEFT, fill=Y)
+    S.config(command=T.yview)
+    T.config(yscrollcommand=S.set)
+    T.insert(END, view)
+
+    with open(outfile, "w") as f:
+        f.write(view)
+
+
